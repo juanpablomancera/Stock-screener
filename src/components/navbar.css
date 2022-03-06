@@ -1,5 +1,6 @@
 nav {
     height: 90px;
+    max-width: 100%;
     background: #ffffff;
     display: flex;
     justify-content: center;
@@ -9,7 +10,8 @@ nav {
 }
 
 nav > img {
-    max-height:120px;
+    object-fit: cover;
+    max-height: 100%;
     border-radius: 15px;
 }
 .sections {
@@ -18,6 +20,7 @@ nav > img {
 }
 .sections > li {
     list-style-type: none;
+    font-size: 30px;
 
 }
 
@@ -25,4 +28,21 @@ nav > img {
     text-decoration: none;
     color:#1E1E24;
     font-size:35px;
+}
+
+@media screen and (max-width: 500px){
+    nav {
+        flex-direction: column;
+        height: auto;
+    }
+    nav > img {
+        object-fit: cover;
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    .sections > li {
+        font-size: 20px;
+    }
+
 }
