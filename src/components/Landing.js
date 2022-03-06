@@ -1,6 +1,5 @@
 import React from "react"
 import "./landing.css"
-import portada from "../images/background.jpg";
 
 export default function Landing(){
     return (
