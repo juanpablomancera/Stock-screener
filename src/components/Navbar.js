@@ -5,16 +5,16 @@ import "./navbar.css"
 export default function Navbar(){
     return(
         <nav>
-            <img src={logo}/>
+            <img src={logo} alt=""/>
             <ul className="sections">
                 <li>
-                    <a href="#">Login</a>
+                    Login
                 </li>
                 <li>
-                    <a href="#">Register</a>
+                    Register
                 </li>
                 <li>
-                    <a href="#">Stock screener</a>
+                    Stock screener
                 </li>
             </ul>
         </nav>
