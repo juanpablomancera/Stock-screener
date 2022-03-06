@@ -9,10 +9,9 @@ nav {
 
 }
 
-nav > img {
+.logo-img {
     object-fit: cover;
-    max-height: 100%;
-    border-radius: 15px;
+    max-height: 90px;
 }
 .sections {
     display: flex;
@@ -20,28 +19,26 @@ nav > img {
 }
 .sections > li {
     list-style-type: none;
-    font-size: 30px;
-
 }
 
-.sections >li >a {
+.sections >li > a {
     text-decoration: none;
     color:#1E1E24;
-    font-size:35px;
+    font-size:30px;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 700px){
     nav {
         flex-direction: column;
         height: auto;
     }
-    nav > img {
+    .logo-img{
         object-fit: cover;
         max-height: 100%;
         max-width: 100%;
     }
 
-    .sections > li {
+    .sections > li > a {
         font-size: 20px;
     }
 
