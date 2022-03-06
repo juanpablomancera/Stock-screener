@@ -1,6 +1,6 @@
 import React from "react"
 import logo from "../images/logo2.png"
-import "./navbar.css"
+import "../ComponentsStyles/navbar.css"
 import {Outlet, Link} from "react-router-dom"
 
 export default function Navbar(){

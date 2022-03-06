@@ -1,5 +1,5 @@
 import React from "react"
-import "./landing.css"
+import "../ComponentsStyles/landing.css"
 import {Outlet, Link} from "react-router-dom"
 
 export default function Landing(){

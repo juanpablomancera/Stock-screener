@@ -1,0 +1,59 @@
+.register-form{
+
+}
+
+.register-form-title{
+    padding-left: 50px;
+}
+
+form {
+    padding:0px 50px;
+    display: grid;
+    grid-template:auto / 1fr 1fr ;
+    justify-content: center;
+    gap:20px;
+    margin-bottom: 30px;
+}
+
+input {
+    border: 1px solid #1E1E24;
+    height: 40px;
+    width:240px;
+    border-radius: 15px;
+    align-self: center;
+
+}
+
+input:hover {
+    background: #1E1E24;
+    color:white;
+}
+
+input::placeholder{
+    color:white;
+}
+
+label {
+    height: 80px;
+    width:200px;
+    font-size: 25px;
+}
+
+.register-form-btn{
+    border: 1px solid #1E1E24;
+    border-radius: 8px;
+    height: 40px;
+    font-size: 25px;
+    background: #DE9151;
+    color:#1E1E24;
+    font-weight: 700;
+    width: 240px;
+    margin-left: 50px;
+    margin-bottom:20px;
+}
+
+@media screen and (max-width: 600px) {
+    form{
+        grid-template: auto / 1fr;
+    }
+}

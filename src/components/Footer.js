@@ -1,5 +1,5 @@
 import React from "react"
-import "./footer.css"
+import "../ComponentsStyles/footer.css"
 
 export default function Footer(){
     const date = new Date()
