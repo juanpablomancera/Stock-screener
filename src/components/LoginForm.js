@@ -39,7 +39,7 @@ export default function LoginForm(){
                     <input
                         type="password"
                         onChange={handleChange}
-                        name="email"
+                        name="password"
                         value={formData.password}
                     />
                     <h3>You don't have an account? Register
