@@ -3,7 +3,7 @@
 }
 
 .filters {
-    margin:40px 15%;
+    margin:40px 10%;
     background-color: white;
     padding: 20px;
     border:1px solid black;
@@ -76,17 +76,116 @@
     grid-column: 10/11;
     grid-row: 3;
     height: 20px;
-    max-width: 1fr;
 }
 
 label {
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 .filter-btn {
     grid-column: 4/8;
     grid-row: 4;
     height: 40px;
+    margin:10px;
 }
 
+@media screen and (max-width: 1000px){
+    .filters{
+        display: grid;
+        grid-template: 30px 30px 30px 30px 30px 30px 40px/ repeat(5, 1fr) ;
+    }
+
+    .all-high-label {
+        grid-column: 1/5;
+        grid-row: 1;
+    }
+
+    .all-high {
+        grid-column: 5/6;
+        grid-row: 1;
+    }
+
+    .weeks-high-label{
+        grid-column: 1/5;
+        grid-row: 2;
+    }
+
+    .weeks-high {
+        grid-column: 5/6;
+        grid-row: 2;
+    }
+
+
+
+    .weeks-min-label{
+        grid-column: 1/5;
+        grid-row: 3;
+    }
+
+    .weeks-min{
+        grid-column: 5/6;
+        grid-row: 3;
+    }
+
+    .moving-average-label{
+        grid-column: 1/5;
+        grid-row: 4;
+    }
+
+    .moving-average {
+        grid-column: 5/6;
+        grid-row: 4;
+    }
+
+
+
+    .past-earnings-surprise-label{
+        grid-column: 1/5;
+        grid-row: 5;
+    }
+
+    .past-earnings-surprise{
+        grid-column: 5/6;
+        grid-row: 5;
+    }
+
+    .past-earnings-increase-label{
+        grid-column: 1/5;
+        grid-row: 6;
+    }
+
+    .past-earnings-increase {
+        grid-column: 5/6;
+        grid-row: 6;
+        height: 20px;
+    }
+
+    .filter-btn {
+        grid-column: 2/5;
+        grid-row: 7;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .filters{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    label{
+        font-size:22px;
+    }
+
+    select{
+        margin:5px;
+        padding:8px;
+    }
+
+    .filter-btn{
+        width: 140px;
+
+    }
+}
 

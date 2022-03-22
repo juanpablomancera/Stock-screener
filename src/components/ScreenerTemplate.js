@@ -1,5 +1,8 @@
 import React from "react"
 import "../ComponentsStyles/screenerTemplate.css"
+import "./Stock"
+import Stock from "./Stock";
+
 export default function ScreenerTemplate(){
 
     const [filters, setFilters] = React.useState({
@@ -12,6 +15,15 @@ export default function ScreenerTemplate(){
     })
 
     const [filteredStocks, setFilteredStocks] = React.useState([])
+
+    const stocks = filteredStocks.map(stock =>{
+        return (
+            <Stock
+                key={stock}
+                stock={stock}
+            />
+        )
+    })
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -126,7 +138,7 @@ export default function ScreenerTemplate(){
 
                 <button className="filter-btn" onClick={handleSubmit}>Filter the stocks</button>
             </div>
-            <p>{filteredStocks}</p>
+            {stocks}
         </div>
     )
 }
