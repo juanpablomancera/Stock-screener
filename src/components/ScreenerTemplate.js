@@ -74,7 +74,7 @@ export default function ScreenerTemplate(){
                 <label className="weeks-min-label">Distance to 52 weeks minimum</label>
                 <select
                     className="weeks-min"
-                    name="weeksMin" value={filters.weeksMin}
+                    name="weeksMin"
                     value={filters.weeksMin}
                     onChange={handleChange}>
                     <option value="">--Choose--</option>
