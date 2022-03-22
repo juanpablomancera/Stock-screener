@@ -9,6 +9,7 @@ export default function LoginForm(){
             password: "",
         }
     )
+    const [parrafo, setParrafo] = React.useState("Hola")
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -17,6 +18,25 @@ export default function LoginForm(){
                 ...prevFormData,
                 [name]: value
             }
+        })
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+
+        const request = new Request("http://localhost:5000/login",{
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        fetch(request).then(res => res.json()).then(data => setParrafo(data._c))
+
+        setFormData({
+            username: "",
+            password:""
         })
     }
     return (
@@ -45,7 +65,7 @@ export default function LoginForm(){
                     <h3>You don't have an account? Register
                         <Link to="/register" style={{ textDecoration: 'underline',color:'#1E1E24' }}> KNOW</Link>
                     </h3>
-                <button className="login-form-btn">Login</button>
+                <button className="login-form-btn" onClick={handleSubmit}>Login  :{parrafo}</button>
             </div>
         </div>
     )
