@@ -1,19 +1,26 @@
-import React from "react"
-import Navbar from "./components/Navbar";
-import Landing from "./components/Landing";
-import Footer from "./components/Footer";
+import React from 'react';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
 
+import './index.css';
+import Main from './Main';
+import Register from "./Register"
+import Login from "./Login"
+import Screener from "./Screener"
 
-function App() {
-  return (
-      <>
-      <main>
-        <Navbar />
-        <Landing />
-      </main>
-    <Footer />
-      </>
-  )
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                    <Route path="/" element={<Main/>}/>
+                    <Route path="register" element={<Register/>}/>
+                    <Route path="login" element={<Login/>}/>
+                    <Route path="stockscreener" element={<Screener/>}/>
+                </Routes>
+        </BrowserRouter>
+    )
+
 }
-
-export default App;

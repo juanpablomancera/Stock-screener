@@ -68,7 +68,7 @@ export default function RegisterForm(){
                 name="confirmPassword"
                 value={formData.confirmPassword}
             />
-                <p className="required-data">* This data is compulsory</p>
+            <p className="required-data">* This data is compulsory</p>
             <button className="register-form-btn">Register</button>
         </div>
 
