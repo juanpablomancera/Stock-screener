@@ -2,14 +2,16 @@ import React from "react"
 import "../ComponentsStyles/forms.css"
 import {Link} from "react-router-dom";
 
+
 export default function LoginForm(){
+
+
     const [formData, setFormData] = React.useState(
         {
             username: "",
             password: "",
         }
     )
-    const [parrafo, setParrafo] = React.useState("Hola")
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -32,12 +34,14 @@ export default function LoginForm(){
             }
         });
 
-        fetch(request).then(res => res.json()).then(data => setParrafo(data._c))
+        fetch(request).then(res => res.json()).then(data => console.log(data))
 
         setFormData({
             username: "",
             password:""
         })
+
+
     }
     return (
         <div className="login-form">
@@ -65,7 +69,7 @@ export default function LoginForm(){
                     <h3>You don't have an account? Register
                         <Link to="/register" style={{ textDecoration: 'underline',color:'#1E1E24' }}> KNOW</Link>
                     </h3>
-                <button className="login-form-btn" onClick={handleSubmit}>Login  :{parrafo}</button>
+                <button className="login-form-btn" onClick={handleSubmit}>Login</button>
             </div>
         </div>
     )
