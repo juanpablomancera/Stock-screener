@@ -2,6 +2,7 @@ import React from "react"
 import "../ComponentsStyles/screenerTemplate.css"
 import "./Stock"
 import Stock from "./Stock";
+import Waiting from "./Waiting"
 
 export default function ScreenerTemplate(){
 
@@ -15,6 +16,7 @@ export default function ScreenerTemplate(){
     })
 
     const [filteredStocks, setFilteredStocks] = React.useState([])
+    const [waiting, setWaiting] = React.useState(false)
 
     const stocks = filteredStocks.map(stock =>{
         return (
@@ -34,10 +36,12 @@ export default function ScreenerTemplate(){
             }
         })
     }
-
+    function True(){
+        setWaiting(true)
+    }
     function handleSubmit(e){
         e.preventDefault()
-
+        True()
         const request = new Request("http://localhost:5000/screener",{
             method: 'POST',
             body: JSON.stringify(filters),
@@ -46,7 +50,10 @@ export default function ScreenerTemplate(){
             }
         });
 
-        fetch(request).then(res => res.json()).then(data => setFilteredStocks(data))
+        fetch(request)
+            .then(res => res.json())
+            .then(data => setFilteredStocks(data))
+            .then(setWaiting(false))
 
     }
 
@@ -138,6 +145,7 @@ export default function ScreenerTemplate(){
 
                 <button className="filter-btn" onClick={handleSubmit}>Filter the stocks</button>
             </div>
+            {waiting && <Waiting />}
             {stocks}
         </div>
     )

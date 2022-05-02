@@ -8,7 +8,7 @@ export default function LoginForm(){
 
     const [formData, setFormData] = React.useState(
         {
-            username: "",
+            email: "",
             password: "",
         }
     )
@@ -37,7 +37,7 @@ export default function LoginForm(){
         fetch(request).then(res => res.json()).then(data => console.log(data))
 
         setFormData({
-            username: "",
+            email: "",
             password:""
         })
 
@@ -48,13 +48,13 @@ export default function LoginForm(){
             <div className="form">
                 <h1 className="login-title">Get logged</h1>
                 <label>
-                    Username
+                    Email
                 </label>
                     <input
-                        type="text"
+                        type="email"
                         onChange={handleChange}
-                        name="username"
-                        value={formData.username}
+                        name="email"
+                        value={formData.email}
                     />
 
                 <label >

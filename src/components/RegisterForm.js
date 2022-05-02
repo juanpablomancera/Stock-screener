@@ -5,7 +5,6 @@ export default function RegisterForm(){
 
     const [formData, setFormData] = React.useState(
         {
-            username: "",
             email: "",
             password: "",
             confirmPassword: "",
@@ -22,20 +21,31 @@ export default function RegisterForm(){
         })
     }
 
+    function handleSubmit(e){
+        e.preventDefault()
+
+        const request = new Request("http://localhost:5000/register", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-Type":"application/json"
+            }
+        });
+
+        fetch(request).then(res => res.json()).then(data => console.log(data))
+
+        setFormData({
+            email: "",
+            password: "",
+            confirmPassword: "",
+        })
+    }
+
     return(
         <div className="register-form">
 
         <div className="form">
             <h1 className="register-title">Get Registered</h1>
-            <label>
-                Username*
-            </label>
-            <input
-                type="text"
-                onChange={handleChange}
-                name="username"
-                value={formData.username}
-                />
 
 
             <label>
@@ -69,7 +79,7 @@ export default function RegisterForm(){
                 value={formData.confirmPassword}
             />
             <p className="required-data">* This data is compulsory</p>
-            <button className="register-form-btn">Register</button>
+            <button className="register-form-btn" onClick={handleSubmit}>Register</button>
         </div>
 
 

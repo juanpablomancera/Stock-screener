@@ -21,6 +21,16 @@ export default function App() {
 
 
     function PrivateRoute({children}) {
+        const request = new Request("http://localhost:5000/checkUser",{
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${credential}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        fetch(request).then(res => res.json()).then(data => console.log(data))
+
         return credential ? children  : <Navigate to="/login"/>
     }
     return (
