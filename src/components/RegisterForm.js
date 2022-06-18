@@ -1,8 +1,9 @@
 import React from "react"
 import "../ComponentsStyles/forms.css"
+import {Link, useNavigate} from "react-router-dom";
 
 export default function RegisterForm(){
-
+    const navigate = useNavigate()
     const [formData, setFormData] = React.useState(
         {
             email: "",
@@ -21,24 +22,47 @@ export default function RegisterForm(){
         })
     }
 
-    function handleSubmit(e){
-        e.preventDefault()
-
-        const request = new Request("http://localhost:5000/register", {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type":"application/json"
-            }
-        });
-
-        fetch(request).then(res => res.json()).then(data => console.log(data))
-
+    function restartData(){
         setFormData({
             email: "",
             password: "",
             confirmPassword: "",
         })
+    }
+
+    function handleRequest(data){
+        if (data.msg === "User already exists"){
+            window.alert("That user already exists!!")
+        }
+        else  {
+            sessionStorage.setItem("token",data.msg)
+            console.log("Redirecting to stockscreener")
+            navigate("/stockscreener")
+
+        }
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        if (formData.password === formData.confirmPassword){
+            const request = new Request("http://localhost:5000/register", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            });
+
+            fetch(request)
+                .then(res => res.json())
+                .then(data => handleRequest(data))
+
+            restartData()
+
+            }
+        else {
+            window.alert("The passwords don't match!!")
+        }
     }
 
     return(
@@ -79,6 +103,9 @@ export default function RegisterForm(){
                 value={formData.confirmPassword}
             />
             <p className="required-data">* This data is compulsory</p>
+            <h3>You have already an account? Log in
+                <Link to="/login" style={{ textDecoration: 'underline',color:'#1E1E24' }}> KNOW</Link>
+            </h3>
             <button className="register-form-btn" onClick={handleSubmit}>Register</button>
         </div>
 

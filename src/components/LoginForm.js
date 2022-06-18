@@ -1,12 +1,10 @@
-import React from "react"
+import {useState, useContext} from "react"
 import "../ComponentsStyles/forms.css"
-import {Link} from "react-router-dom";
-
+import {Link, useNavigate} from "react-router-dom";
 
 export default function LoginForm(){
-
-
-    const [formData, setFormData] = React.useState(
+    const navigate = useNavigate()
+    const [formData, setFormData] = useState(
         {
             email: "",
             password: "",
@@ -23,6 +21,22 @@ export default function LoginForm(){
         })
     }
 
+    function restartData(){
+        setFormData({
+            email: "",
+            password:""
+        })
+    }
+
+    function handleRequest(data){
+        if(data.acces_token){
+            navigate("/stockscreener")
+        }
+        else{
+            window.alert("The user does not exist")
+        }
+    }
+
     function handleSubmit(e){
         e.preventDefault()
 
@@ -34,12 +48,11 @@ export default function LoginForm(){
             }
         });
 
-        fetch(request).then(res => res.json()).then(data => console.log(data))
+        fetch(request)
+            .then(res => res.json())
+            .then(data => handleRequest(data))
 
-        setFormData({
-            email: "",
-            password:""
-        })
+        restartData()
 
 
     }
