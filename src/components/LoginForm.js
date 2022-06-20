@@ -30,6 +30,7 @@ export default function LoginForm(){
 
     function handleRequest(data){
         if(data.acces_token){
+            sessionStorage.setItem("token",data.acces_token)
             navigate("/stockscreener")
         }
         else{

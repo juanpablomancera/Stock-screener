@@ -1,10 +1,10 @@
-import React from "react"
+import {useState} from "react"
 import "../ComponentsStyles/forms.css"
 import {Link, useNavigate} from "react-router-dom";
 
 export default function RegisterForm(){
     const navigate = useNavigate()
-    const [formData, setFormData] = React.useState(
+    const [formData, setFormData] = useState(
         {
             email: "",
             password: "",
@@ -36,7 +36,6 @@ export default function RegisterForm(){
         }
         else  {
             sessionStorage.setItem("token",data.msg)
-            console.log("Redirecting to stockscreener")
             navigate("/stockscreener")
 
         }

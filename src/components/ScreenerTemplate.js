@@ -1,12 +1,12 @@
-import React from "react"
+import {useState} from "react"
 import "../ComponentsStyles/screenerTemplate.css"
 import "./Stock"
 import Stock from "./Stock";
-import Waiting from "./Waiting"
+import {useNavigate} from "react-router-dom";
 
 export default function ScreenerTemplate(){
-
-    const [filters, setFilters] = React.useState({
+    const navigate = useNavigate()
+    const [filters, setFilters] = useState({
         allHigh:"",
         weeksHigh:"",
         weeksMin:"",
@@ -15,8 +15,7 @@ export default function ScreenerTemplate(){
         pastEarningsIncrease:""
     })
 
-    const [filteredStocks, setFilteredStocks] = React.useState([])
-    const [waiting, setWaiting] = React.useState(false)
+    const [filteredStocks, setFilteredStocks] = useState([""])
 
     const stocks = filteredStocks.map(stock =>{
         return (
@@ -36,24 +35,36 @@ export default function ScreenerTemplate(){
             }
         })
     }
-    function True(){
-        setWaiting(true)
+
+
+    function handleResponse(data){
+        if (data.msg){
+            window.alert("You're not logged in!!")
+            navigate("/")
+        }
+        else{
+            setFilteredStocks(data)
+
+        }
     }
+
+
     function handleSubmit(e){
         e.preventDefault()
-        True()
+        let credential = sessionStorage.getItem("token")
+
         const request = new Request("http://localhost:5000/screener",{
             method: 'POST',
             body: JSON.stringify(filters),
             headers: {
+                "Authorization": `Bearer ${credential}`,
                 'Content-Type': 'application/json'
             }
         });
 
         fetch(request)
             .then(res => res.json())
-            .then(data => setFilteredStocks(data))
-            .then(setWaiting(false))
+            .then(data => handleResponse(data))
 
     }
 
@@ -145,7 +156,6 @@ export default function ScreenerTemplate(){
 
                 <button className="filter-btn" onClick={handleSubmit}>Filter the stocks</button>
             </div>
-            {waiting && <Waiting />}
             {stocks}
         </div>
     )
