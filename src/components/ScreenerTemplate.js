@@ -40,7 +40,7 @@ export default function ScreenerTemplate(){
     function handleResponse(data){
         if (data.msg){
             window.alert("You're not logged in!!")
-            navigate("/")
+            navigate("/login")
         }
         else{
             setFilteredStocks(data)

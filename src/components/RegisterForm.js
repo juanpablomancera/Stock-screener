@@ -43,7 +43,7 @@ export default function RegisterForm(){
 
     function handleSubmit(e){
         e.preventDefault()
-        if (formData.password === formData.confirmPassword){
+        if (formData.password === formData.confirmPassword && formData.email){
             const request = new Request("http://localhost:5000/register", {
                 method: "POST",
                 body: JSON.stringify(formData),
@@ -59,7 +59,10 @@ export default function RegisterForm(){
             restartData()
 
             }
-        else {
+        else if (!formData.email) {
+            window.alert("You didn't enter an email!!")
+        }
+        else{
             window.alert("The passwords don't match!!")
         }
     }
